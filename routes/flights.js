@@ -11,4 +11,7 @@ router.get("/new", flightsCTRL.new)
 //POST new flights to /flights
 router.post("/", flightsCTRL.create)
 
+//GET info page for each /flights/id
+router.get("/:id", flightsCTRL.show)
+
 module.exports = router

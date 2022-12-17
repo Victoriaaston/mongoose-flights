@@ -1,12 +1,16 @@
-// const Flight = require("../models/Flight")
+const Flight = require("../models/Flight")
 
-// module.exports = {
-//     create
-// }
+module.exports = {
+    create
+}
 
-// function create(req, res) {
-//     Flight.save(function(err, flight){
-//         flight.destinations.push(req.body)
-//         res.redirect("/flights")
-//     })
-// }
+function create(req, res) {
+    Flight.findById(req.params.id, function(err, flight) {
+        flight.destinations.push(req.body)
+        console.log(req.body)
+        flight.save(function(err){
+            res.redirect(`/flights/${flight._id}`)
+            console.log(err)
+        })
+    })
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Details</h1>
+    <table id="list">
+        <thead>
+            <tr>
+                <th>Flight Details</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td><%= flight.airline %></td>
+                </tr>
+                <tr>
+                    <td><%= flight.flightNo %></td>
+                </tr>
+                <tr>
+                    <td><%= flight.airport %></td>
+                </tr>
+                <tr>
+                    <td><%= flight.departs %></td>
+                </tr>
+                <tr>
+                    <td><%= flight.date %></td>
+                </tr>
+            </tbody>
+    </table>
+    <form id="flight-destinations" action="/flights/<%= flight._id %>/destinations" method="POST">
+        <label> Destination: </label>
+        <select name="airport">
+            <option value="AUS">AUS</option>
+            <option value="DFW">DFW</option>
+            <option value="DEN">DEN</option>
+            <option value="LAX">LAX</option>
+            <option value="SAN">SAN</option>
+        </select>
+        <label>Arrival Date: </label>
+        <input name="arrival" type="Date">
+        <input type="submit" value="Add Destination">
+    </form>
+    <ul>
+        <%- flight.destinations.map(f =>
+        `<li>From: ${flight.airport} <br> To: ${f.airport} <br> Departure: ${f.arrival} <br><br></li>`
+        ).join("") %>
+    </ul>
+</body>
+</html>
