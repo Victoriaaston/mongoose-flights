@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- I need to add the action to the id of the one where the ticket is being added?  -->
+    <form id="flight-tickets" action="/tickets" method="POST">
+    <input name="flight" type="hidden" value="<%= flightId %>">
+    <h2>Add a new ticket:</h2>
+    <label>Enter seat number: </label>
+    <input name="seat" required pattern="[A-F][1-9]\d?" placeholder="enter the seat...">
+    <label>Price: $</label>
+    <input name="price" type="number" placeholder="Enter the price..."> 
+    <input type="submit" value="add ticket">
+    <h1>ADD ID SO IT LINKS TO THE CORRECT FLIGHT</h1>
+</form>
+</body>
+</html>
+

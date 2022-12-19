@@ -17,19 +17,19 @@
         </thead>
         <tbody>
                 <tr>
-                    <td><%= flight.airline %></td>
+                    <td>Airline: <%= flight.airline %></td>
                 </tr>
                 <tr>
-                    <td><%= flight.flightNo %></td>
+                    <td>Flight Number: <%= flight.flightNo %></td>
                 </tr>
                 <tr>
-                    <td><%= flight.airport %></td>
+                    <td>Departure Airport: <%= flight.airport %></td>
                 </tr>
                 <tr>
-                    <td><%= flight.departs %></td>
+                    <td>Departure Time: <%= flight.departs %></td>
                 </tr>
                 <tr>
-                    <td><%= flight.date %></td>
+                    <td>Departure Date: <%= flight.date %></td>
                 </tr>
             </tbody>
     </table>
@@ -47,9 +47,34 @@
         <input type="submit" value="Add Destination">
     </form>
     <ul>
+        <h3>List of Flights: </h3>
         <%- flight.destinations.map(f =>
         `<li>From: ${flight.airport} <br> To: ${f.airport} <br> Departure: ${f.arrival} <br><br></li>`
         ).join("") %>
     </ul>
+
+    <table id="tickets">
+        <thead>
+            <tr>
+                <th>Tickets</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% tickets.forEach(function(t) {%>
+                <tr>
+                    <td><%= t.seat %></td>
+                </tr>
+                <tr>
+                    <td><%= t.flight %></td>
+                </tr>
+                <tr>
+                    <td><%= t.price %></td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+    <a href="/flights/<%= flight._id %>/tickets/new">Add a new ticket</a>
 </body>
 </html>

@@ -1,5 +1,5 @@
 const Flight = require("../models/Flight")
-
+const Ticket = require("../models/tickets")
 module.exports = {
     index,
     new: newFlight,
@@ -14,7 +14,7 @@ function index(req, res) {
 }
 
 function newFlight(req, res) {
-    res.render("flights/new", {flight: "Add Flight"})
+    res.render("flights/new", {title: "Add Flight"})
 }
 
 function create(req, res) {
@@ -26,9 +26,16 @@ function create(req, res) {
         res.redirect("/flights")
     })
 }
-
 function show(req, res) {
     Flight.findById(req.params.id, function(err, flight) {
-        res.render("flights/show", {title: "Flight details", flight})
-    })
+        Ticket.find({flight: flight._id}, function(err, tickets) {
+            console.log(tickets)
+        // Now you can pass both the flight and tickets in the res.render call
+        res.render("flights/show", {title: "flight details", flight, tickets}) 
+        //ticket showing doesnt seem to be working
+        });
+    });
 }
+
+
+
